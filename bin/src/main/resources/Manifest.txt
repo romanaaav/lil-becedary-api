@@ -1,0 +1,81 @@
+
+			Lil'becedary API
+
+Lil'becedary API es una aplicacion Back-End REST destinada a procesar solicitudes HTML del tipo JSON y XML.
+Se estima que para el año 2017 Spotify tenia más de 8000 artistas con el prefijo Lil' en sus nombres,
+este servicio se encarga de organizarlos de tal manera que sea facil para cualquier aplicacion cliente
+consumir esta informacion para lo que considere pertienente. Todas las consultas enviaran informacion adicional
+del api en formato HAL.
+
+Endpoints:
+
+ [Lilbecedary-Domain]/api
+	Principal endpoint, unicamente ofrecera links a la documentacion y a otros endpoints mas comunes.
+
+ [Lilbecedary-Domain]/api/artists
+	Endpoint relacionado directamente con los artistas, los cuales son los registros principales del API. Podra 
+	devolver como maximo una cantidad de 2000 registros. Soportara paginacion de 100 registros por pagina. Y 
+	realiza esta paginacion de forma automatica. Este endpoint se puede utilizar para ingresar y actualizar artistas.
+	
+	QueryStrings permitidos
+		?search=[string] envia una coleccion de artistas cuyo pseudonimo posea la cadena de caracteres string.
+
+		?age=[n] envia una coleccion de artistas cuya edad sea n.
+		?age=<[n] envia una coleccion de artistas cuya edad sea menor a n.
+		?age=>[n] envia una coleccion de artistas cuya edad sea mayor a n.
+		?age=[n1]-[n2] envia una coleccion de artistas cuya edad se encuentre entre n1 y n2.
+
+		?since=[n] envia una colecccion de artistas que esten activos desde esta fecha.
+	
+		?status=[dead/alive] envia una coleccion de artistas que cumplan con este status.
+
+		?language=[language] envia una coleccion de artistas que hablen este idioma.
+		?language=[language], ..., [language] envia una coleccion de artistas que tengan contenido en estos idiomans.
+
+ [Lilbecedary-Domain]/api/artists/[artist.publidID]
+	Endpoint que directamente ofrece la informacion del artista con el publicID especificado. Ofrecera un vinculo
+	a su ciudad de origen.
+
+ [Lilbecedary-Domain]/api/cities
+	Endpoint relacionado con las ubicaciones de los artistas, envia todas las ciudades con su informacion junto con
+	una coleccion de todos los artistas de esta ubicacion. Este endpoint se puede usar para ingresar y actualizar ciudades.
+
+	QueryStrings permitidos
+		?search=[string] envia una coleccion de ciudades cuyo nombre contenga la cadena de caracteres string.
+
+		?artists=[n] envia una coleccion de ciudades que tengan n artistas.
+		?artists=<[n] envia una coleccion de ciudades que tengan mas de n artistas.
+		?artists=>[n] envia una coleccion de ciudades que tengan menos de n artistas.
+		?artists=>[n1]-[n2] envia una coleccion de ciudades donde la cantidad de artistas se encuetre entre los valores n1 y n2.
+	
+
+ [Lilbecedary-Domain]/api/cites/[city.publicID]
+	Endpoint que ofrece una ciudad especifica, asi como tambien una coleccion de artistas originarios de dicha ciudad.
+
+	QueryStrings permitidos
+
+		?media=[socialmedia] envia una coleccion de artistas de esta ciudad que posean esta red social.
+		?media=[socialmedia1], ... ,[socialmedia10] envia una coleccion de artistas de que posean estas redes sociales.
+
+
+ [Lilbecedary-Domain]/api/media/
+	Endpoint relacionado con cuentas de redes sociales. Podra devolver como maximo una cantidad de 2000 registros. Soportara paginacion de 100 registros por pagina.
+	Y realiza esta paginacion de forma automatica. Este endpoint se puede utilizar para actualizar redes sociales. Cada red social ofrece un link hacia su respectivo artista,
+	asi como tambien links hacia otras redes sociales del mismo.
+
+	QueryStrings permitidos
+		?search=[string] devuelve todas las cuentas que posean el string en su nombre de usuario.
+
+		?application=[string] devuelve solo los registros que pertenecen a esta plataforma.
+
+		?affiliates=[n] devuelve todas las redes sociales que tengan esta cantidad de afiliados/subscripciones.
+		?affiliates=<[n] devuelve todas las redes sociales que tengan menos de n cantidad de afiliados/subscripciones.
+		?affiliates=>[n] devuelve todas las redes sociales que tengan mas de n cantidad de afiliados/subscripciones.
+		?affiliates=[n1]-[n2] devuelve todas las redes sociales cuya cantidad de afiliados/subscripciones se encuentre entre los valores n1 y n2.
+
+ [Lilbecedary-Domain]/api/media/[socialmedia.publicID]
+		Entrega un registro especifico de una red social junto con us artista.
+	
+
+
+
