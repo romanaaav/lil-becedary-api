@@ -1,5 +1,9 @@
 package com.lilbecedary.ws.shared.dto;
 
-public class MediaDto {
+import java.io.Serializable;
+
+public class MediaDto implements Serializable{
+
+	private static final long serialVersionUID = -1233708191200043667L;
 
 }

@@ -1,4 +1,4 @@
-package com.lilbecedary.lilbecedary;
+package com.lilbecedary.ws.tests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
