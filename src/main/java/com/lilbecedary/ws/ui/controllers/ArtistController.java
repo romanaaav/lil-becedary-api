@@ -18,5 +18,4 @@ public class ArtistController {
 		return "This will return an artist very soon.";
 	}
 	
-	
 }
